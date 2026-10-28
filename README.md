@@ -65,7 +65,7 @@ Both launchers request multiprocess rendering. The Linux launcher also requests 
 
 ## Verification
 
-Windows release builds have compiled with both the dummy and GStreamer media backends. The native bookmarks/settings module passes four tests. The first multiprocess runtime test failed to start a renderer; startup changes are included but still need runtime verification. Linux and GitHub Actions have not yet been tested.
+Windows release builds have compiled with both the dummy and GStreamer media backends. The native bookmarks/settings module passes four tests. The first multiprocess runtime test failed to start a renderer; startup changes are included but still need runtime verification. The Linux browser runtime has not been tested. Source checks and native storage tests pass on Windows and Linux in GitHub Actions.
 
 Source checks:
 
