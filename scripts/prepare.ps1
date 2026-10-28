@@ -16,7 +16,7 @@ $currentRevision = & git -C $engineRoot rev-parse HEAD
 if ($LASTEXITCODE -ne 0 -or $currentRevision.Trim() -ne $revision) {
     throw "Expected Servo revision $revision. Existing checkout left untouched."
 }
-$patchFile = Join-Path $projectRoot 'patches/neptunium.patch'
+$patchFile = Join-Path $projectRoot 'patches/obsidian.patch'
 & git -C $engineRoot apply --reverse --check $patchFile 2>$null
 if ($LASTEXITCODE -ne 0) {
     & git -C $engineRoot apply --check $patchFile
@@ -24,11 +24,11 @@ if ($LASTEXITCODE -ne 0) {
     & git -C $engineRoot apply $patchFile
     if ($LASTEXITCODE -ne 0) { throw 'Patch failed.' }
 }
-Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/logo.png') -Destination (Join-Path $engineRoot 'resources/neptunium.png')
+Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/logo.png') -Destination (Join-Path $engineRoot 'resources/obsidian.png')
 $resourceRoot = Join-Path $engineRoot 'resources/resource_protocol'
-Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/logo.png') -Destination (Join-Path $resourceRoot 'neptunium.png')
+Copy-Item -LiteralPath (Join-Path $projectRoot 'assets/logo.png') -Destination (Join-Path $resourceRoot 'obsidian.png')
 $homepage = [IO.File]::ReadAllText((Join-Path $projectRoot 'start.html'))
-$homepage = $homepage.Replace("img-src 'self'", 'img-src resource:').Replace('assets/logo.png', 'resource:///neptunium.png')
-[IO.File]::WriteAllText((Join-Path $resourceRoot 'neptunium-newtab.html'), $homepage, [Text.UTF8Encoding]::new($false))
-Copy-Item -LiteralPath (Join-Path $projectRoot 'about.html') -Destination (Join-Path $resourceRoot 'neptunium-about.html')
-Write-Host 'Neptunium source is prepared.'
+$homepage = $homepage.Replace("img-src 'self'", 'img-src resource:').Replace('assets/logo.png', 'resource:///obsidian.png')
+[IO.File]::WriteAllText((Join-Path $resourceRoot 'obsidian-newtab.html'), $homepage, [Text.UTF8Encoding]::new($false))
+Copy-Item -LiteralPath (Join-Path $projectRoot 'about.html') -Destination (Join-Path $resourceRoot 'obsidian-about.html')
+Write-Host 'Obsidian source is prepared.'

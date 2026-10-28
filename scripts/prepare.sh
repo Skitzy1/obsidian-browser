@@ -13,15 +13,15 @@ if [ "$(git -C "$engine_root" rev-parse HEAD)" != "$revision" ]; then
     echo 'The existing Servo checkout is not at the pinned revision; left untouched.' >&2
     exit 1
 fi
-patch_file="$project_root/patches/neptunium.patch"
+patch_file="$project_root/patches/obsidian.patch"
 if ! git -C "$engine_root" apply --reverse --check "$patch_file" 2>/dev/null; then
     git -C "$engine_root" apply --check "$patch_file"
     git -C "$engine_root" apply "$patch_file"
 fi
-cp "$project_root/assets/logo.png" "$engine_root/resources/neptunium.png"
+cp "$project_root/assets/logo.png" "$engine_root/resources/obsidian.png"
 resource_root="$engine_root/resources/resource_protocol"
-cp "$project_root/assets/logo.png" "$resource_root/neptunium.png"
-sed -e "s/img-src 'self'/img-src resource:/" -e 's|assets/logo.png|resource:///neptunium.png|' \
-    "$project_root/start.html" > "$resource_root/neptunium-newtab.html"
-cp "$project_root/about.html" "$resource_root/neptunium-about.html"
-echo 'Neptunium source is prepared.'
+cp "$project_root/assets/logo.png" "$resource_root/obsidian.png"
+sed -e "s/img-src 'self'/img-src resource:/" -e 's|assets/logo.png|resource:///obsidian.png|' \
+    "$project_root/start.html" > "$resource_root/obsidian-newtab.html"
+cp "$project_root/about.html" "$resource_root/obsidian-about.html"
+echo 'Obsidian source is prepared.'

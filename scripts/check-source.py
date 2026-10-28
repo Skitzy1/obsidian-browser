@@ -57,7 +57,7 @@ def main():
     subprocess.run(["git", "-C", str(ENGINE), "diff", "--check"], check=True)
     subprocess.run([
         "git", "-C", str(ENGINE), "apply", "--reverse", "--check",
-        str(ROOT / "patches/neptunium.patch"),
+        str(ROOT / "patches/obsidian.patch"),
     ], check=True)
     print("PASS patch matches the working source")
     check_page("start.html")
@@ -65,10 +65,10 @@ def main():
     bundled = ENGINE / "resources/resource_protocol"
     expected = (ROOT / "start.html").read_text(encoding="utf-8").replace(
         "img-src 'self'", "img-src resource:"
-    ).replace("assets/logo.png", "resource:///neptunium.png")
-    assert (bundled / "neptunium-newtab.html").read_text(encoding="utf-8") == expected
-    assert (bundled / "neptunium-about.html").read_bytes() == (ROOT / "about.html").read_bytes()
-    assert (bundled / "neptunium.png").read_bytes() == (ROOT / "assets/logo.png").read_bytes()
+    ).replace("assets/logo.png", "resource:///obsidian.png")
+    assert (bundled / "obsidian-newtab.html").read_text(encoding="utf-8") == expected
+    assert (bundled / "obsidian-about.html").read_bytes() == (ROOT / "about.html").read_bytes()
+    assert (bundled / "obsidian.png").read_bytes() == (ROOT / "assets/logo.png").read_bytes()
     print("PASS bundled internal pages and logo match project originals")
     print("These source checks do not compile or run the browser.")
 
