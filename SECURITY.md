@@ -1,6 +1,6 @@
 # Security
 
-Neptunium is an experimental browser. There are no supported stable releases or
+Obsidian is an experimental browser. There are no supported stable releases or
 security-update guarantees yet. The pinned Servo version has no Windows renderer
 sandbox. Do not rely on this preview for sensitive browsing.
 
@@ -17,7 +17,7 @@ with the Servo maintainers as well.
 ## Current boundaries
 
 Web content must not gain access to native settings files, arbitrary local files,
-the terminal, IDE projects, or operating-system tools. The built-in Neptunium
+the terminal, IDE projects, or operating-system tools. The built-in Obsidian
 protocol serves fixed local pages without access to privileged engine APIs.
 
 Site isolation, sandboxing, dependency updates, download handling, and background

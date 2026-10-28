@@ -1,4 +1,6 @@
-# Neptunium
+# Obsidian
+
+Obsidian is the browser project for Neptunium OS.
 
 A native desktop browser project for Windows and Linux, using Servo to render websites and Bing for search. Tabs, navigation, bookmarks, and settings are native Rust/egui controls. HTML is used only for bundled new-tab and about pages.
 
@@ -6,14 +8,14 @@ This is an experimental browser. Windows release builds compile successfully, bu
 
 ## Current source features
 
-- Neptunium window branding, supplied crystal icon, dark purple appearance.
+- Obsidian window branding, supplied crystal icon, dark purple appearance.
 - Scrollable tabs above the address bar, new tabs and windows, close-tab controls.
 - Back, forward, reload, Home, address bar, and connection information.
 - Bing search with encoded query text; no remote address suggestions.
 - Local bookmarks, add/remove controls, bookmarks bar, and native manager.
 - Native settings for light/dark appearance and bookmarks-bar visibility.
 - Per-tab zoom controls and reset.
-- Bundled `neptunium:newtab` and `neptunium:about` pages with no remote resources.
+- Bundled `obsidian:newtab` and `obsidian:about` pages with no remote resources.
 - Separate local profile, respecting the engine's `--config-dir` option.
 - No added telemetry, account system, cloud sync, or browsing-history database.
 
@@ -21,7 +23,7 @@ Shortcuts include Ctrl+L (address), Ctrl+T (new tab), Ctrl+W (close tab), Ctrl+D
 
 ## Prepare source
 
-Servo is pinned to `471f5decafec4c2cbf7d3004db4ea10823548d8d`. The `engine/` upstream checkout is excluded from project Git tracking. All native modifications, including new Rust modules, are preserved in `patches/neptunium.patch`. Prepare scripts copy the bundled pages and supplied logo. Upstream license notices remain in place.
+Servo is pinned to `471f5decafec4c2cbf7d3004db4ea10823548d8d`. The `engine/` upstream checkout is excluded from project Git tracking. All native modifications, including new Rust modules, are preserved in `patches/obsidian.patch`. Prepare scripts copy the bundled pages and supplied logo. Upstream license notices remain in place.
 
 Windows:
 

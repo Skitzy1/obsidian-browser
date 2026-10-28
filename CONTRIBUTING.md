@@ -1,6 +1,6 @@
 # Contributing
 
-Neptunium is early in development. Small changes that improve browser behavior,
+Obsidian is early in development. Small changes that improve browser behavior,
 privacy, compatibility, or maintainability are welcome.
 
 ## Working on the browser

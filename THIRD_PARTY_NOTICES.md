@@ -2,7 +2,7 @@
 
 ## Servo
 
-Neptunium uses [Servo](https://github.com/servo/servo), pinned to
+Obsidian uses [Servo](https://github.com/servo/servo), pinned to
 `471f5decafec4c2cbf7d3004db4ea10823548d8d`.
 
 Servo and its dependencies retain their own licenses and copyright notices.
@@ -22,4 +22,4 @@ established before distributing it as public project branding.
 ## Search
 
 Bing is a Microsoft service, not a bundled search index. Users submit queries to
-Bing directly. Neptunium is not affiliated with Microsoft or the Servo project.
+Bing directly. Obsidian is not affiliated with Microsoft or the Servo project.
