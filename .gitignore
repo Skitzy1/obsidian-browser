@@ -7,3 +7,8 @@ disk-setup-result.json
 scripts/reclaim-cachyos-disk.ps1
 __pycache__/
 checks/native/target/
+
+# Local launch shortcuts
+/Obsidian.cmd
+/scripts/launch.ps1
+/scripts/launch.sh

@@ -2,7 +2,7 @@
 
 Obsidian is the browser project for Neptunium OS.
 
-A native desktop browser project for Windows and Linux, using Servo to render websites and Bing for search. Tabs, navigation, bookmarks, and settings are native Rust/egui controls. HTML is used only for bundled new-tab and about pages.
+A native desktop browser project for Windows and Linux, using Servo to render websites and Brave Search for search. Tabs, navigation, bookmarks, and settings are native Rust/egui controls. HTML is used only for bundled new-tab and about pages.
 
 This is an experimental browser. Windows release builds compile successfully, but renderer startup and runtime compatibility still need work. It is not ready for everyday or sensitive browsing.
 
@@ -11,7 +11,7 @@ This is an experimental browser. Windows release builds compile successfully, bu
 - Obsidian window branding, supplied crystal icon, dark purple appearance.
 - Scrollable tabs above the address bar, new tabs and windows, close-tab controls.
 - Back, forward, reload, Home, address bar, and connection information.
-- Bing search with encoded query text; no remote address suggestions.
+- Brave Search with encoded query text; no remote address suggestions.
 - Local bookmarks, add/remove controls, bookmarks bar, and native manager.
 - Native settings for light/dark appearance and bookmarks-bar visibility.
 - Per-tab zoom controls and reset.
@@ -49,8 +49,7 @@ Windows:
 cd engine
 .\mach.ps1 bootstrap
 .\mach.ps1 build --release
-cd ..
-.\scripts\launch.ps1
+.\target\release\servoshell.exe --multiprocess obsidian:newtab
 ```
 
 Linux:
@@ -59,11 +58,10 @@ Linux:
 cd engine
 ./mach bootstrap
 ./mach build --release
-cd ..
-sh scripts/launch.sh
+./target/release/servoshell --multiprocess --sandbox obsidian:newtab
 ```
 
-Both launchers request multiprocess rendering. The Linux launcher also requests Servo's sandbox and fails if the platform cannot provide it. This Servo revision does **not** implement a Windows renderer sandbox; process separation alone does not replace one.
+These commands enable multiprocess rendering. The Linux command also requires Servo's sandbox. This Servo revision does **not** implement a Windows renderer sandbox; process separation alone does not replace one.
 
 ## Verification
 
@@ -81,7 +79,7 @@ These verify Rust grammar, patch reproducibility, local-page resource policy, se
 
 ## Privacy boundaries
 
-Microsoft Bing receives submitted queries, your IP address, and ordinary request metadata. Result pages and other websites may set cookies or collect data. Bookmarks intentionally store URLs you save. Bookmarks and appearance settings stay in the selected local profile.
+Brave Search receives submitted queries, your IP address, and ordinary request metadata. Result pages and other websites may set cookies or collect data. Bookmarks intentionally store URLs you save. Bookmarks and appearance settings stay in the selected local profile.
 
 Built-in pages contain no JavaScript or remote resources and use a restrictive content security policy. The new internal protocol exposes only fixed bundled pages, without privileged engine API access. The complete engine still needs an audit for background connections and storage behavior.
 
