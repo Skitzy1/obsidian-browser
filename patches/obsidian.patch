@@ -1299,7 +1299,7 @@ index d10930e..cf048b1 100644
  
  fn is_localhost(s: &str) -> bool {
 diff --git a/ports/servoshell/prefs.rs b/ports/servoshell/prefs.rs
-index 236106c..1997ed0 100644
+index 236106c..96b877e 100644
 --- a/ports/servoshell/prefs.rs
 +++ b/ports/servoshell/prefs.rs
 @@ -55,6 +55,8 @@ pub(crate) static EXPERIMENTAL_PREFS: &[&str] = &[
@@ -1336,7 +1336,7 @@ index 236106c..1997ed0 100644
  pub fn default_config_dir() -> Option<PathBuf> {
      let mut config_dir = ::dirs::config_dir().unwrap();
 -    config_dir.push("servo");
-+    config_dir.push("obsidian");
++    config_dir.push("obsidian-browser");
      config_dir.push("default");
      Some(config_dir)
  }
@@ -1345,7 +1345,7 @@ index 236106c..1997ed0 100644
      // instead of `data_dir()` ($HOME/Library/Application Support) ?
      let mut config_dir = ::dirs::data_dir().unwrap();
 -    config_dir.push("Servo");
-+    config_dir.push("Obsidian");
++    config_dir.push("ObsidianBrowser");
      Some(config_dir)
  }
  
@@ -1353,7 +1353,7 @@ index 236106c..1997ed0 100644
  pub fn default_config_dir() -> Option<PathBuf> {
      let mut config_dir = ::dirs::config_dir().unwrap();
 -    config_dir.push("Servo");
-+    config_dir.push("Obsidian");
++    config_dir.push("ObsidianBrowser");
      Some(config_dir)
  }
  
