@@ -35,7 +35,7 @@ def check_page(name):
             if source:
                 assert (ROOT / source).is_file(), source
         if tag == "form":
-            assert attrs["action"] == "https://www.bing.com/search"
+            assert attrs["action"] == "https://search.brave.com/search"
             assert attrs.get("method", "get").lower() == "get"
             assert attrs["autocomplete"] == "off"
     print(f"PASS {name}: local resources, CSP, referrer policy, search destination")
