@@ -367,7 +367,7 @@ index 0000000..f922357
 +    }
 +}
 diff --git a/ports/servoshell/desktop/gui.rs b/ports/servoshell/desktop/gui.rs
-index 12047fd..19a8d75 100644
+index 12047fd..3d2ab8d 100644
 --- a/ports/servoshell/desktop/gui.rs
 +++ b/ports/servoshell/desktop/gui.rs
 @@ -45,7 +45,6 @@ use euclid::{Length, Point2D, Rect, Scale, Size2D};
@@ -527,7 +527,7 @@ index 12047fd..19a8d75 100644
 +            ui.add_space(12.0);
 +            ui.separator();
 +            ui.strong("Search");
-+            ui.label("Bing · Microsoft receives searches when you submit them.");
++            ui.label("Brave Search · Brave receives searches when you submit them.");
 +            ui.label("The address bar does not request remote suggestions.");
 +            ui.add_space(12.0);
 +            ui.strong("On this device");
@@ -886,7 +886,7 @@ index 12047fd..19a8d75 100644
                                          egui::TextEdit::singleline(location)
                                              .id(location_id)
 -                                            .hint_text("Search or enter address"),
-+                                            .hint_text("Search with Bing or enter an address")
++                                            .hint_text("Search with Brave or enter an address")
 +                                            .margin(egui::vec2(12.0, 8.0)),
                                      );
  
@@ -1240,7 +1240,7 @@ index ba1baae..0eb6d98 100644
          if #[cfg(not(any(target_os = "android", target_env = "ohos")))] {
              servoshell::main()
 diff --git a/ports/servoshell/parser.rs b/ports/servoshell/parser.rs
-index d10930e..cf048b1 100644
+index d10930e..141cbf4 100644
 --- a/ports/servoshell/parser.rs
 +++ b/ports/servoshell/parser.rs
 @@ -94,7 +94,9 @@ fn try_as_file(request: &str) -> Option<ServoUrl> {
@@ -1279,7 +1279,7 @@ index d10930e..cf048b1 100644
 +    #[test]
 +    fn search_preserves_reserved_characters_and_unicode() {
 +        let query = "rust & privacy #1 + café";
-+        let result = try_as_search_page(query, "https://www.bing.com/search?q=%s").unwrap();
++        let result = try_as_search_page(query, "https://search.brave.com/search?q=%s").unwrap();
 +        let parsed = url::Url::parse(result.as_str()).unwrap();
 +        assert_eq!(parsed.query_pairs().count(), 1);
 +        let (key, value) = parsed.query_pairs().next().unwrap();
@@ -1293,13 +1293,13 @@ index d10930e..cf048b1 100644
 +        assert!(try_as_domain("cats and dogs/pets").is_none());
 +        assert!(try_as_domain("example.com/path").is_some());
 +        assert!(try_as_domain("localhost:8080/path").is_some());
-+        assert!(try_as_search_page("", "https://www.bing.com/search?q=%s").is_none());
++        assert!(try_as_search_page("", "https://search.brave.com/search?q=%s").is_none());
 +    }
  }
  
  fn is_localhost(s: &str) -> bool {
 diff --git a/ports/servoshell/prefs.rs b/ports/servoshell/prefs.rs
-index 236106c..96b877e 100644
+index 236106c..bced9e9 100644
 --- a/ports/servoshell/prefs.rs
 +++ b/ports/servoshell/prefs.rs
 @@ -55,6 +55,8 @@ pub(crate) static EXPERIMENTAL_PREFS: &[&str] = &[
@@ -1327,7 +1327,7 @@ index 236106c..96b877e 100644
              screen_size_override: None,
              simulate_touch_events: false,
 -            searchpage: "https://duckduckgo.com/html/?q=%s".into(),
-+            searchpage: "https://www.bing.com/search?q=%s".into(),
++            searchpage: "https://search.brave.com/search?q=%s".into(),
              tracing_filter: None,
              url: None,
              output_image_path: None,
@@ -1384,7 +1384,7 @@ index 236106c..96b877e 100644
          no_native_titlebar: cmd_args.no_native_titlebar,
          device_pixel_ratio_override: cmd_args.device_pixel_ratio,
 diff --git a/ports/servoshell/test.rs b/ports/servoshell/test.rs
-index 1cd6d82..f7292cc 100644
+index 1cd6d82..d182408 100644
 --- a/ports/servoshell/test.rs
 +++ b/ports/servoshell/test.rs
 @@ -89,7 +89,7 @@ fn test_argument_parsing_special() {
@@ -1392,7 +1392,7 @@ index 1cd6d82..f7292cc 100644
  fn test_url(input: &str, location: &str, cmdline_if_exists: &str, cmdline_otherwise: &str) {
      assert_eq!(
 -        location_bar_input_to_url(input, "https://duckduckgo.com/html/?q=%s")
-+        location_bar_input_to_url(input, "https://www.bing.com/search?q=%s")
++        location_bar_input_to_url(input, "https://search.brave.com/search?q=%s")
              .unwrap()
              .into_string(),
          location
@@ -1401,10 +1401,10 @@ index 1cd6d82..f7292cc 100644
      test_url(
          "dragonfruit",
 -        "https://duckduckgo.com/html/?q=dragonfruit",
-+        "https://www.bing.com/search?q=dragonfruit",
++        "https://search.brave.com/search?q=dragonfruit",
          "file:///fake/cwd/dragonfruit",
 -        "https://duckduckgo.com/html/?q=dragonfruit",
-+        "https://www.bing.com/search?q=dragonfruit",
++        "https://search.brave.com/search?q=dragonfruit",
      );
      test_url(
          "localhost:8000",
@@ -1413,10 +1413,10 @@ index 1cd6d82..f7292cc 100644
      test_url(
          "dragonfruit",
 -        "https://duckduckgo.com/html/?q=dragonfruit",
-+        "https://www.bing.com/search?q=dragonfruit",
++        "https://search.brave.com/search?q=dragonfruit",
          "file:///C:/fake/cwd/dragonfruit",
 -        "https://duckduckgo.com/html/?q=dragonfruit",
-+        "https://www.bing.com/search?q=dragonfruit",
++        "https://search.brave.com/search?q=dragonfruit",
      );
      test_url(
          "localhost:8000",
@@ -1425,22 +1425,22 @@ index 1cd6d82..f7292cc 100644
      test_url_any_os(
          ".leah.chromebooks.lol",
 -        "https://duckduckgo.com/html/?q=.leah.chromebooks.lol",
-+        "https://www.bing.com/search?q=.leah.chromebooks.lol",
++        "https://search.brave.com/search?q=.leah.chromebooks.lol",
          "file:///fake/cwd/.leah.chromebooks.lol",
          "file:///C:/fake/cwd/.leah.chromebooks.lol",
 -        "https://duckduckgo.com/html/?q=.leah.chromebooks.lol",
-+        "https://www.bing.com/search?q=.leah.chromebooks.lol",
++        "https://search.brave.com/search?q=.leah.chromebooks.lol",
      );
  
      // contains spaces
      test_url_any_os(
          "3.5 kg in lb",
 -        "https://duckduckgo.com/html/?q=3.5%20kg%20in%20lb",
-+        "https://www.bing.com/search?q=3.5%20kg%20in%20lb",
++        "https://search.brave.com/search?q=3.5%20kg%20in%20lb",
          "file:///fake/cwd/3.5%20kg%20in%20lb",
          "file:///C:/fake/cwd/3.5%20kg%20in%20lb",
 -        "https://duckduckgo.com/html/?q=3.5%20kg%20in%20lb",
-+        "https://www.bing.com/search?q=3.5%20kg%20in%20lb",
++        "https://search.brave.com/search?q=3.5%20kg%20in%20lb",
      );
  
      // user-local domain
