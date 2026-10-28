@@ -1,0 +1,9 @@
+engine/
+engine-recovery/
+.profile/
+dist/
+.tools/
+disk-setup-result.json
+scripts/reclaim-cachyos-disk.ps1
+__pycache__/
+checks/native/target/
