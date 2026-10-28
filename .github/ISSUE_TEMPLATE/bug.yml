@@ -1,0 +1,35 @@
+name: Bug report
+description: Report something that does not work.
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: Commit hash and build command, if built locally
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Operating system
+      placeholder: Windows or Linux version
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include the website address only if it is safe to share publicly.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs or screenshots
+      description: Remove passwords, tokens, private URLs, and personal information first. Do not upload your browser profile.
